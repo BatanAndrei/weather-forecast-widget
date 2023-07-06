@@ -6,7 +6,7 @@ const InputTown = () => {
     return (
         <>
             <h1 className={input.text}>Прогноз погоды</h1>
-            <input className={input.modification} placeholder="Введите город или населённый пункт"></input>
+            <input type="text" className={input.modification} placeholder="Введите город или населённый пункт"></input>
         </>
     )
 }
