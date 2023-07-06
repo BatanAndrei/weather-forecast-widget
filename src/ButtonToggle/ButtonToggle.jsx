@@ -10,9 +10,9 @@ const ButtonToggle = (props) => {
     const remove = useRef();
 
     function switchWeather(e) {
-        if(e.target == remove.current){
+        if(e.target === remove.current){
             setState(false);   
-        }else if(e.target !== remove.current && e.target.tagName == 'BUTTON'){
+        }else if(e.target !== remove.current && e.target.tagName === 'BUTTON'){
             setState(true);
         }
     }
