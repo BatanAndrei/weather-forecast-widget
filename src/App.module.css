@@ -1,0 +1,13 @@
+
+.position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.context {
+    width: 400px;
+    height: 600px;
+    background-image: url('./backForWidget.avif');
+}
