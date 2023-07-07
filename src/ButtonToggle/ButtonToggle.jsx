@@ -26,7 +26,7 @@ const ButtonWeekDay = (props) => {
       }, [])
     return (
         <>
-            <button ref={ref} className={state ? toggleStyle.buttonToggle : toggleStyle.buttonActive}>{props.nameButton}</button>
+            <button ref={ref} className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}>{props.nameButton}</button>
         </>
     )
 }
