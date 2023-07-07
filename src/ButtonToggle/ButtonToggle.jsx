@@ -12,8 +12,7 @@ const ButtonWeekDay = (props) => {
     function toggleWeather(e) {
         if(e.target === ref.current){
             setState(false);   
-            console.log(ref)
-        }else if(e.target !== ref.current && e.target.tagName === 'BUTTON'){
+        }else if(e.target !== ref.current && e.target.tagName === 'SPAN'){
             setState(true);
         }
     }
@@ -26,7 +25,7 @@ const ButtonWeekDay = (props) => {
       }, [])
     return (
         <>
-            <button ref={ref} className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}>{props.nameButton}</button>
+            <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{props.nameButton}</span></button>
         </>
     )
 }

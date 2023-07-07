@@ -2,6 +2,7 @@
     width: 60px;
     height: 30px;
     border-radius: 5px;
+    padding: 0px;
     cursor: pointer;
     border: none;
     background-color: #d9d7d7 ;
@@ -13,11 +14,19 @@
     width: 60px;
     height: 30px;
     border-radius: 5px;
+    padding: 0px;
     cursor: pointer;
     border: none;
     background-color: #cecdcd ;
     font-weight: 700;
     color: rgb(90, 89, 89);
     box-shadow: 0px 0px 15px 5px #d9d7d7, 0px 0px 15px 10px #e9e9e9;
+}
+
+.targetClick {
+    width: 60px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
 }
 
