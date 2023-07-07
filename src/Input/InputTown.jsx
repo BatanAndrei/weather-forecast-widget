@@ -1,12 +1,12 @@
 import React from "react";
-import input from './Imput.module.css';
+import inputStyle from './Imput.module.css';
 
 const InputTown = () => {
 
     return (
         <>
-            <h1 className={input.text}>Прогноз погоды</h1>
-            <input type="text" className={input.modification} placeholder="Введите город или населённый пункт"></input>
+            <h1 className={inputStyle.text}>Прогноз погоды</h1>
+            <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт"></input>
         </>
     )
 }

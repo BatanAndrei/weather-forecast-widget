@@ -1,4 +1,4 @@
-export const buttonReqWeather = 'Погода';
-export const buttonRecGeo = 'Геолокация';
-export const buttonToday = 'На сегодня';
-export const buttonWeek = 'На неделю';
+export const nameReqWeather = 'Погода';
+export const nameRecGeo = 'Геолокация';
+export const nameToday = 'На сегодня';
+export const nameWeek = 'На неделю';

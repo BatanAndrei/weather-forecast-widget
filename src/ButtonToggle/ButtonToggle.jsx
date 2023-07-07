@@ -5,29 +5,30 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 
 
-const ButtonToggle = (props) => {
+const ButtonWeekDay = (props) => {
     const [state, setState] = useState(true);
-    const remove = useRef();
+    const ref = useRef();
 
-    function switchWeather(e) {
-        if(e.target === remove.current){
+    function toggleWeather(e) {
+        if(e.target === ref.current){
             setState(false);   
-        }else if(e.target !== remove.current && e.target.tagName === 'BUTTON'){
+            console.log(ref)
+        }else if(e.target !== ref.current && e.target.tagName === 'BUTTON'){
             setState(true);
         }
     }
 
     useEffect(() => {
-        window.addEventListener("click", switchWeather)
+        window.addEventListener("click", toggleWeather)
         return () => {
-        window.removeEventListener("click", switchWeather)
+        window.removeEventListener("click", toggleWeather)
         }
       }, [])
     return (
         <>
-            <button ref={remove} className={state ? toggleStyle.buttonToggle : toggleStyle.active}>{props.nameButton}</button>
+            <button ref={ref} className={state ? toggleStyle.buttonToggle : toggleStyle.buttonActive}>{props.nameButton}</button>
         </>
     )
 }
 
-export default ButtonToggle;
+export default ButtonWeekDay;

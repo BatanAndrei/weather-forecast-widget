@@ -2,8 +2,8 @@ import React from 'react';
 import back from './App.module.css';
 import InputTown from './Input/InputTown';
 import ButtonReq from './Button/ButtonReq';
-import ButtonToggle from './ButtonToggle/ButtonToggle';
-import { buttonReqWeather, buttonRecGeo, buttonToday, buttonWeek } from './Data/Data';
+import ButtonWeekDay from './ButtonToggle/ButtonToggle';
+import { nameReqWeather, nameRecGeo, nameToday, nameWeek } from './Data/Data';
 
 function App() {
   
@@ -15,12 +15,12 @@ function App() {
                     <div className={back.displayWeather}>
 
                     </div>
-                    <ButtonToggle nameButton={buttonToday}/>
-                    <ButtonToggle nameButton={buttonWeek}/>
+                    <ButtonWeekDay nameButton={nameToday}/>
+                    <ButtonWeekDay nameButton={nameWeek}/>
                 </div>
                 <div className={back.containersReq}>
-                    <ButtonReq nameButton={buttonReqWeather} />
-                    <ButtonReq nameButton={buttonRecGeo} />
+                    <ButtonReq nameButton={nameReqWeather} />
+                    <ButtonReq nameButton={nameRecGeo} />
                 </div>
             </div>
         </div>
