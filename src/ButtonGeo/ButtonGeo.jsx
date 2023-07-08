@@ -5,14 +5,14 @@ const ButtonGeo = (props) => {
     const [status, setStatus] = useState();
     
     const error = () => {
-        setStatus('Невозможно получить Ваше местоположение');
+        //setStatus('Невозможно получить Ваше местоположение');
+        alert('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт')
     }
 
      const success = (position) => {
         setStatus(position.coords)
-          
-        console.log(position.coords)
-    }
+        console.log(position.coords)   
+        }
 
     const heandlerGeo = () => {
         if (!navigator.geolocation) {
