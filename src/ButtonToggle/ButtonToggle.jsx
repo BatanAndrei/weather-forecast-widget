@@ -9,16 +9,16 @@ const ButtonWeekDay = (props) => {
     const [state, setState] = useState(true);
     const ref = useRef();
 
-    function toggleWeather(e) {
-        if(e.target === ref.current){
-            setState(false);   
-        }else if(e.target !== ref.current && e.target.tagName === 'SPAN'){
-            setState(true);
-        }
-    }
-
     useEffect(() => {
+        function toggleWeather(e) {
+            if(e.target === ref.current){
+                setState(false);   
+            }else if(e.target !== ref.current && e.target.tagName === 'SPAN'){
+                setState(true);
+            }
+        }
         window.addEventListener("click", toggleWeather)
+
         return () => {
         window.removeEventListener("click", toggleWeather)
         }

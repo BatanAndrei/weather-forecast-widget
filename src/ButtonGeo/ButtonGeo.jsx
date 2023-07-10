@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GeoButStyle from './ButtonGeo.module.css';
 
 const ButtonGeo = (props) => {
     const [status, setStatus] = useState();
+    const refGeo = useRef();
     
     const error = () => {
         //setStatus('Невозможно получить Ваше местоположение');
@@ -14,18 +15,28 @@ const ButtonGeo = (props) => {
         console.log(position.coords)   
         }
 
-    const heandlerGeo = () => {
-        if (!navigator.geolocation) {
-            setStatus('Geolocation не поддерживается вашим браузером');
-        }else{
-            setStatus('Определение местоположения...');
-            navigator.geolocation.getCurrentPosition(success, error)
-        }
-    } 
+        useEffect(() => {
+            const heandlerGeo = (e) => {
+                if(e.target === refGeo.current){
+                if (!navigator.geolocation) {
+                    setStatus('Geolocation не поддерживается вашим браузером');
+                }else{
+                    setStatus('Определение местоположения...');
+                    navigator.geolocation.getCurrentPosition(success, error)
+                }
+            }
+            }
 
+            window.addEventListener("click", heandlerGeo)
+
+            return () => {
+            window.removeEventListener("click", heandlerGeo)
+            }
+        },[])
+    
     return (
         <>
-            <button className={GeoButStyle.button} onClick={heandlerGeo}>{props.nameButton}</button>
+            <button className={GeoButStyle.button} ref={refGeo}>{props.nameButton}</button>
         </>
     )
 }
