@@ -22,7 +22,7 @@ const ButtonWeekDay = (props) => {
         return () => {
         window.removeEventListener("click", toggleWeather)
         }
-      }, [])
+      },[])
     return (
         <>
             <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{props.nameButton}</span></button>
