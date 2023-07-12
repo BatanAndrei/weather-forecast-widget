@@ -15,8 +15,10 @@ const InputTown = () => {
         <>
             <h1 className={inputStyle.text}>Прогноз погоды</h1>
             <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} />
-            <div className={inputStyle.containersReq}>
+            <div className={inputStyle.containerReq}>
                 <ButtonGeo dataInputForGeo={dataInputField} nameButton={nameRecGeo} />
+            </div>
+            <div className={inputStyle.containerToggle}>
                 <ButtonWeekDay nameButton={nameToday}/>
                 <ButtonWeekDay nameButton={nameWeek}/>
             </div>

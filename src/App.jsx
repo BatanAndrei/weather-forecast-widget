@@ -9,9 +9,7 @@ function App() {
         <div className={back.position}>
             <div className={back.context}>
                 <InputTown />
-                <div className={back.containerWeather}>
-                    <div className={back.displayWeather}></div>
-                </div>
+                <div className={back.displayWeather}></div>
             </div>
         </div>
     );
