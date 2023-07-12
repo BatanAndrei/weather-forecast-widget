@@ -7,25 +7,25 @@ const ButtonWeather = (props) => {
     const refWea = useRef();
     const dataFromInput = props.dataInputaWeatherGet;
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
-    const requestGeo = `${endPoint}lat=${props.lat}&lon=${props.lon}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`;
-    const requesttown = `${endPoint}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`;
+    const requestTown = `${endPoint}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`;
    
     useEffect(() => {
         const heandleWeahter = (e) => {
             if(e.target === refWea.current){
-            fetch(requesttown)
+            fetch(requestTown)
             .then(response => response.json())
             .then(data => {setDatas(data)
                 console.log(data)  
             })
         }
+        
         }
         window.addEventListener("click", heandleWeahter)
 
         return () => {
         window.removeEventListener("click", heandleWeahter)
         }
-    },[requestGeo, requesttown])
+    },[requestTown])
 
     return (
         <>
