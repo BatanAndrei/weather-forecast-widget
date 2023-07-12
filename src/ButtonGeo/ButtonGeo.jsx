@@ -4,27 +4,22 @@ import ButtonWeather from '../ButtonWeather/ButtonWeather';
 import { nameReqWeather } from '../Data/Data'
 
 const ButtonGeo = (props) => {
-    const [datas, setDatas] = useState();
-    const [lat, setLat] = useState();
-    const [lon, setLon] = useState();
+    const [datasG, setDatasG] = useState();
     const [status, setStatus] = useState();
     const refGeo = useRef();
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
     const dataInputForWeather = props.dataInputForGeo;
      
     const error = () => {
-        //setStatus('Невозможно получить Ваше местоположение');
+        setStatus('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт');
         alert('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт')
     }
     
      const success = (position) => {
         fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`)
         .then(response => response.json())
-        .then(data => {setDatas(data)
+        .then(data => {setDatasG(data)
             console.log(data) })
-
-        setLat(position.coords.latitude);
-        setLon(position.coords.longitude); 
         }
 
         useEffect(() => {

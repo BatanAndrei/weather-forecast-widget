@@ -3,7 +3,7 @@ import { useState } from "react";
 import WeatherButStyle from './ButtonWea.module.css';
 
 const ButtonWeather = (props) => {
-    const [datas, setDatas] = useState();
+    const [datasW, setDatasW] = useState();
     const refWea = useRef();
     const dataFromInput = props.dataInputaWeatherGet;
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -14,7 +14,7 @@ const ButtonWeather = (props) => {
             if(e.target === refWea.current){
             fetch(requestTown)
             .then(response => response.json())
-            .then(data => {setDatas(data)
+            .then(data => {setDatasW(data)
                 console.log(data)  
             })
         }
