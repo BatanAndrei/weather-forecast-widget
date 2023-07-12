@@ -41,7 +41,7 @@ const ButtonGeo = (props) => {
             }
         },[])
     
-    return ( 
+    return (
         <>
             <ButtonWeather dataInputaWeatherGet={dataInputForWeather} nameButton={nameReqWeather} />
             <button className={GeoButStyle.button} ref={refGeo}>{props.nameButton}</button>
