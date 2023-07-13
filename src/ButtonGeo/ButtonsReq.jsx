@@ -3,8 +3,8 @@ import GeoButStyle from './ButtonsReq.module.css';
 
 
 const ButtonsReq = (props) => {
-    const [datasG, setDatasG] = useState();
-    const [datasW, setDatasW] = useState();
+    const [datasGeo, setDatasGeo] = useState();
+    const [datasWea, setDatasWea] = useState();
     const [status, setStatus] = useState();
     const refGeo = useRef();
     const refWea = useRef();
@@ -18,7 +18,7 @@ const ButtonsReq = (props) => {
             if(e.target === refWea.current){
             fetch(requestTown)
             .then(response => response.json())
-            .then(data => {setDatasW(data)
+            .then(data => {setDatasWea(data)
                 console.log(data)  
             })
         }
@@ -40,7 +40,7 @@ const ButtonsReq = (props) => {
      const success = (position) => {
         fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`)
         .then(response => response.json())
-        .then(data => {setDatasG(data)
+        .then(data => {setDatasGeo(data)
             console.log(data) })
         }
 
