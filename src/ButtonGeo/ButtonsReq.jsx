@@ -1,15 +1,37 @@
 import React, { useState, useEffect, useRef } from "react";
-import GeoButStyle from './ButtonGeo.module.css';
-import ButtonWeather from '../ButtonWeather/ButtonWeather';
-import { nameReqWeather } from '../Data/Data'
+import GeoButStyle from './ButtonsReq.module.css';
 
-const ButtonGeo = (props) => {
+
+const ButtonsReq = (props) => {
     const [datasG, setDatasG] = useState();
+    const [datasW, setDatasW] = useState();
     const [status, setStatus] = useState();
     const refGeo = useRef();
+    const refWea = useRef();
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
-    const dataInputForWeather = props.dataInputForGeo;
-     
+    const dataFromInput = props.dataInputForReq;
+    const requestTown = `${endPoint}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`;
+   
+
+    useEffect(() => {
+        const heandleWeahter = (e) => {
+            if(e.target === refWea.current){
+            fetch(requestTown)
+            .then(response => response.json())
+            .then(data => {setDatasW(data)
+                console.log(data)  
+            })
+        }
+        
+        }
+        window.addEventListener("click", heandleWeahter)
+
+        return () => {
+        window.removeEventListener("click", heandleWeahter)
+        }
+    },[requestTown])
+
+
     const error = () => {
         setStatus('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт');
         alert('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт')
@@ -43,10 +65,10 @@ const ButtonGeo = (props) => {
     
     return (
         <>
-            <ButtonWeather dataInputaWeatherGet={dataInputForWeather} nameButton={nameReqWeather} />
-            <button className={GeoButStyle.button} ref={refGeo}>{props.nameButton}</button>
+            <button className={GeoButStyle.button} ref={refWea}>{props.weaNameBut}</button>
+            <button className={GeoButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
         </>
     )
 }
 
-export default ButtonGeo;
+export default ButtonsReq;
