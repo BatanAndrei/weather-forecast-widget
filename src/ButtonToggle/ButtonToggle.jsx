@@ -3,18 +3,19 @@ import toggleStyle from './ButtonTog.module.css';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { nameToday, nameWeek } from '../Data/Data';
 
 
 const ButtonWeekDay = (props) => {
-    const [state, setState] = useState(true);
+    const [state, setState] = useState(false);
     const ref = useRef();
 
     useEffect(() => {
         function toggleWeather(e) {
             if(e.target === ref.current){
-                setState(false);   
+                setState(true);   
             }else if(e.target !== ref.current && e.target.tagName === 'SPAN'){
-                setState(true);
+                setState(false);
             }
         }
         window.addEventListener("click", toggleWeather)
@@ -25,7 +26,8 @@ const ButtonWeekDay = (props) => {
       },[])
     return (
         <>
-            <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{props.nameButton}</span></button>
+            <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{nameToday}</span></button>
+            <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
         </>
     )
 }

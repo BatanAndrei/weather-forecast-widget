@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import GeoButStyle from './ButtonsReq.module.css';
+import reqButStyle from './ButtonsReq.module.css';
+import ButtonWeekDay from '../ButtonToggle/ButtonToggle';
+import { nameToday, nameWeek } from "../Data/Data";
 
 
 const ButtonsReq = (props) => {
@@ -65,8 +67,17 @@ const ButtonsReq = (props) => {
     
     return (
         <>
-            <button className={GeoButStyle.button} ref={refWea}>{props.weaNameBut}</button>
-            <button className={GeoButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
+        <div className={reqButStyle.container}>
+            <div>
+                <button className={reqButStyle.button} ref={refWea}>{props.weaNameBut}</button>
+                <button className={reqButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
+            </div>
+            <div className={reqButStyle.buttonToggle}>
+                <ButtonWeekDay nameButton={nameToday}/>
+                {/* <ButtonWeekDay nameButton={nameWeek}/> */}
+            </div>
+        </div>
+            
         </>
     )
 }
