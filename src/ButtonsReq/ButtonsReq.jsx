@@ -17,23 +17,19 @@ const ButtonsReq = (props) => {
         const heandleWeahter = (e) => {
             if(e.target === refGeo.current){
                 refGeo.current.style.fontWeight = 700;
+                refWea.current.style.fontWeight = 400;
             }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
                 refGeo.current.style.fontWeight = 400;
             }
-
-            if(e.target === refWea.current){
-                refWea.current.style.fontWeight = 700;
-            }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
-                refWea.current.style.fontWeight = 400;
-            }
-            
+    
             if(e.target === refWea.current && dataFromInput){
                 setStatusMess(' ')
+                refWea.current.style.fontWeight = 700;
                 fetch(requestTown)
                 .then(response => response.json())
                 .then(data => {setDatasWea(data)
                 console.log(data)})
-            }else if(e.target === refWea.current && !dataFromInput){
+            }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
                 refWea.current.style.fontWeight = 400;
             }
