@@ -3,13 +3,13 @@ import reqButStyle from './ButtonsReq.module.css';
 import ButtonsWeekDay from '../ButtonsWeekDay/ButtonsWeekDay';
 
 const ButtonsReq = (props) => {
-    const [datasGeo, setDatasGeo] = useState();
-    const [datasWea, setDatasWea] = useState();
+    const [datasGeo, setDatasGeo] = useState([]);
+    const [datasWea, setDatasWea] = useState([]);
     const [status, setStatus] = useState();
     const refGeo = useRef();
     const refWea = useRef();
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
-    const dataFromInput = props.dataInputForReq;
+    const dataFromInput = props.dataInputBut;
     const requestTown = `${endPoint}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`;
    
 
@@ -19,8 +19,7 @@ const ButtonsReq = (props) => {
             fetch(requestTown)
             .then(response => response.json())
             .then(data => {setDatasWea(data)
-                console.log(data)  
-            })
+            console.log(data)})
         }
         
         }
@@ -41,7 +40,7 @@ const ButtonsReq = (props) => {
         fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`)
         .then(response => response.json())
         .then(data => {setDatasGeo(data)
-            console.log(data) })
+            /* console.log(data) */})
         }
 
         useEffect(() => {
@@ -70,7 +69,7 @@ const ButtonsReq = (props) => {
                 <button className={reqButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ButtonsWeekDay />
+                <ButtonsWeekDay datasGeo={datasGeo} datasWea={datasWea}/>
             </div>
         </>
     )

@@ -7,9 +7,10 @@ import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
 
 
-const ButtonsWeekDay = () => {
+const ButtonsWeekDay = (props) => {
     const [state, setState] = useState();
     const ref = useRef();
+
 
     useEffect(() => {
         function toggleWeather(e) {
@@ -34,7 +35,7 @@ const ButtonsWeekDay = () => {
                 <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
             </div>
             <div>
-                <ShowWeather />
+                <ShowWeather showGeoData={props.datasGeo} showWeaData={props.datasWea}/>
             </div>
         </div>
             

@@ -15,7 +15,7 @@ const InputTown = () => {
             <h1 className={inputStyle.text}>Прогноз погоды</h1>
             <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} />
             <div>
-                <ButtonsReq dataInputForReq={dataInputField} geoNameBut={nameRecGeo} weaNameBut={nameReqWeather} />
+                <ButtonsReq dataInputBut={dataInputField} geoNameBut={nameRecGeo} weaNameBut={nameReqWeather} />
             </div>
         </>
     )
