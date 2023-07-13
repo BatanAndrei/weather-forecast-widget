@@ -27,12 +27,14 @@ const ButtonsReq = (props) => {
                 refWea.current.style.fontWeight = 400;
             }
             
-            if(e.target === refWea.current){
+            if(e.target === refWea.current && dataFromInput){
                 fetch(requestTown)
                 .then(response => response.json())
                 .then(data => {setDatasWea(data)
                 console.log(data)})
-        }
+            }else{
+                refWea.current.style.fontWeight = 400;
+            }
         
         }
         window.addEventListener("click", heandleWeahter)
