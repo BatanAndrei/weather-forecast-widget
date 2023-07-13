@@ -35,7 +35,7 @@ const ButtonsWeekDay = (props) => {
                 <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
             </div>
             <div>
-                <ShowWeather showGeoData={props.datasGeo} showWeaData={props.datasWea}/>
+                <ShowWeather showGeoData={props.datasGeo} showWeaData={props.datasWea} />
             </div>
         </div>
             

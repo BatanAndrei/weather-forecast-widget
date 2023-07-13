@@ -5,7 +5,8 @@ import ButtonsWeekDay from '../ButtonsWeekDay/ButtonsWeekDay';
 const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState([]);
     const [datasWea, setDatasWea] = useState([]);
-    const [status, setStatus] = useState();
+    const [statusMess, setStatusMess] = useState();
+    const [stateStyle, setstateStyle] = useState();
     const refGeo = useRef();
     const refWea = useRef();
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -15,10 +16,22 @@ const ButtonsReq = (props) => {
 
     useEffect(() => {
         const heandleWeahter = (e) => {
+            if(e.target === refGeo.current){
+                setstateStyle(true);
+            }else if(e.target !== refGeo.current && e.target.tagName === 'I'){
+                setstateStyle(false);
+            }
+
+            if(e.target === refWea.current){
+                setstateStyle(false);
+            }else if(e.target !== refWea.current && e.target.tagName === 'I'){
+                setstateStyle(true);
+            }
+
             if(e.target === refWea.current){
             fetch(requestTown)
             .then(response => response.json())
-            .then(data => {setDatasWea(data)
+            .then(data => {setDatasWea(data.name)
             console.log(data)})
         }
         
@@ -32,7 +45,7 @@ const ButtonsReq = (props) => {
 
 
     const error = () => {
-        setStatus('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт');
+        setStatusMess('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт');
         alert('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт')
     }
     
@@ -40,16 +53,16 @@ const ButtonsReq = (props) => {
         fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`)
         .then(response => response.json())
         .then(data => {setDatasGeo(data)
-            /* console.log(data) */})
+            console.log(data)})
         }
 
         useEffect(() => {
             const heandlerGeo = (e) => {
                 if(e.target === refGeo.current){
                 if (!navigator.geolocation) {
-                    setStatus('Geolocation не поддерживается вашим браузером');
+                    setStatusMess('Geolocation не поддерживается вашим браузером');
                 }else{
-                    setStatus('Определение местоположения...');
+                    setStatusMess('Определение местоположения...');
                     navigator.geolocation.getCurrentPosition(success, error)
                 }
             }
@@ -62,14 +75,14 @@ const ButtonsReq = (props) => {
             }
         },[])
     
-    return (
+    return ( //className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}
         <>
             <div className={reqButStyle.buttonsReqPosition}>
-                <button className={reqButStyle.button} ref={refWea}>{props.weaNameBut}</button>
-                <button className={reqButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
+                <button className={stateStyle ? reqButStyle.buttonPoss : reqButStyle.buttonActi}><i ref={refWea}>{props.weaNameBut}</i></button>
+                <button className={stateStyle ? reqButStyle.buttonActi : reqButStyle.buttonPoss}><i ref={refGeo}>{props.geoNameBut}</i></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ButtonsWeekDay datasGeo={datasGeo} datasWea={datasWea}/>
+                <ButtonsWeekDay datasGeo={datasGeo} datasWea={datasWea} />
             </div>
         </>
     )
