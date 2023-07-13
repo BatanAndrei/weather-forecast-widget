@@ -65,16 +65,13 @@ const ButtonsReq = (props) => {
     
     return (
         <>
-        <div className={reqButStyle.container}>
-            <div>
+            <div className={reqButStyle.buttonsReqPosition}>
                 <button className={reqButStyle.button} ref={refWea}>{props.weaNameBut}</button>
                 <button className={reqButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
             </div>
             <div className={reqButStyle.buttonToggle}>
                 <ButtonsWeekDay />
             </div>
-        </div>
-            
         </>
     )
 }

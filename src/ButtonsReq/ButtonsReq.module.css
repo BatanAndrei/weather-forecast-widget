@@ -1,8 +1,9 @@
-.container {
-    margin-top: 80px;
+.buttonsReqPosition {
+    margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
 }
+
 
 .button {
     width: 150px;
