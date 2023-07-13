@@ -18,13 +18,13 @@ const ButtonsReq = (props) => {
         const heandleWeahter = (e) => {
             if(e.target === refGeo.current){
                 setstateStyle(true);
-            }else if(e.target !== refGeo.current && e.target.tagName === 'I'){
+            }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
                 setstateStyle(false);
             }
 
             if(e.target === refWea.current){
                 setstateStyle(false);
-            }else if(e.target !== refWea.current && e.target.tagName === 'I'){
+            }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
                 setstateStyle(true);
             }
 
@@ -75,11 +75,11 @@ const ButtonsReq = (props) => {
             }
         },[])
     
-    return ( //className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}
+    return ( 
         <>
             <div className={reqButStyle.buttonsReqPosition}>
-                <button className={stateStyle ? reqButStyle.buttonPoss : reqButStyle.buttonActi}><i ref={refWea}>{props.weaNameBut}</i></button>
-                <button className={stateStyle ? reqButStyle.buttonActi : reqButStyle.buttonPoss}><i ref={refGeo}>{props.geoNameBut}</i></button>
+                <button className={stateStyle ? reqButStyle.buttonPoss : reqButStyle.buttonActi}><section ref={refWea}>{props.weaNameBut}</section></button>
+                <button className={stateStyle ? reqButStyle.buttonActi : reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
                 <ButtonsWeekDay datasGeo={datasGeo} datasWea={datasWea} />
