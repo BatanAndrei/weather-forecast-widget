@@ -1,5 +1,5 @@
 .buttonsReqPosition {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-around;
 }
@@ -21,4 +21,11 @@
     margin-top: 50px;
     display: flex;
     justify-content: space-around;
+}
+
+.message {
+    margin: 0px 0px 0px 150px;
+    padding: 0px;
+    font-size: 10px;
+    color: rgb(199, 9, 38);
 }

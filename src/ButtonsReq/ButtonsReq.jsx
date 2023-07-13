@@ -5,7 +5,7 @@ import ButtonsWeekDay from '../ButtonsWeekDay/ButtonsWeekDay';
 const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState([]);
     const [datasWea, setDatasWea] = useState([]);
-    const [statusMess, setStatusMess] = useState();
+    const [statusMess, setStatusMess] = useState('');
     const refGeo = useRef();
     const refWea = useRef();
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -28,11 +28,13 @@ const ButtonsReq = (props) => {
             }
             
             if(e.target === refWea.current && dataFromInput){
+                setStatusMess(' ')
                 fetch(requestTown)
                 .then(response => response.json())
                 .then(data => {setDatasWea(data)
                 console.log(data)})
-            }else{
+            }else if(e.target === refWea.current && !dataFromInput){
+                setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
                 refWea.current.style.fontWeight = 400;
             }
         
@@ -78,6 +80,7 @@ const ButtonsReq = (props) => {
               
     return (   
         <>
+            <p className={reqButStyle.message}>{statusMess}</p>
             <div className={reqButStyle.buttonsReqPosition}>
                 <button className={reqButStyle.buttonPoss}><section ref={refWea}>{props.weaNameBut}</section></button>
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>

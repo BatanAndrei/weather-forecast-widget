@@ -13,7 +13,7 @@ const InputTown = () => {
     return (
         <>
             <h1 className={inputStyle.text}>Прогноз погоды</h1>
-            <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} />
+            <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} required />
             <div>
                 <ButtonsReq dataInputBut={dataInputField} geoNameBut={nameRecGeo} weaNameBut={nameReqWeather} />
             </div>
