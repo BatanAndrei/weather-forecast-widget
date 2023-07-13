@@ -6,7 +6,6 @@ const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState([]);
     const [datasWea, setDatasWea] = useState([]);
     const [statusMess, setStatusMess] = useState();
-    const [stateStyle, setstateStyle] = useState();
     const refGeo = useRef();
     const refWea = useRef();
     const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -17,22 +16,22 @@ const ButtonsReq = (props) => {
     useEffect(() => {
         const heandleWeahter = (e) => {
             if(e.target === refGeo.current){
-                setstateStyle(true);
+                refGeo.current.style.fontWeight = 700;
             }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
-                setstateStyle(false);
+                refGeo.current.style.fontWeight = 400;
             }
 
             if(e.target === refWea.current){
-                setstateStyle(false);
+                refWea.current.style.fontWeight = 700;
             }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
-                setstateStyle(true);
+                refWea.current.style.fontWeight = 400;
             }
-
+            
             if(e.target === refWea.current){
-            fetch(requestTown)
-            .then(response => response.json())
-            .then(data => {setDatasWea(data.name)
-            console.log(data)})
+                fetch(requestTown)
+                .then(response => response.json())
+                .then(data => {setDatasWea(data)
+                console.log(data)})
         }
         
         }
@@ -45,8 +44,8 @@ const ButtonsReq = (props) => {
 
 
     const error = () => {
-        setStatusMess('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт');
-        alert('Без разрешения на получение Вашего местоположения необходимо ввести в поле город или населённый пункт')
+        alert('Введите город или населённый пункт. Воспользуйтесь кнопкой "Прогноз по городу"');
+        refGeo.current.style.fontWeight = 400;
     }
     
      const success = (position) => {
@@ -74,12 +73,12 @@ const ButtonsReq = (props) => {
             window.removeEventListener("click", heandlerGeo)
             }
         },[])
-    
-    return ( 
+              
+    return (   
         <>
             <div className={reqButStyle.buttonsReqPosition}>
-                <button className={stateStyle ? reqButStyle.buttonPoss : reqButStyle.buttonActi}><section ref={refWea}>{props.weaNameBut}</section></button>
-                <button className={stateStyle ? reqButStyle.buttonActi : reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
+                <button className={reqButStyle.buttonPoss}><section ref={refWea}>{props.weaNameBut}</section></button>
+                <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
                 <ButtonsWeekDay datasGeo={datasGeo} datasWea={datasWea} />
