@@ -1,13 +1,13 @@
 import React from 'react';
-import toggleStyle from './ButtonTog.module.css'; 
+import toggleStyle from './ButtonsWeekDay.module.css'; 
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
 
 
-const ButtonWeekDay = (props) => {
-    const [state, setState] = useState(false);
+const ButtonsWeekDay = () => {
+    const [state, setState] = useState();
     const ref = useRef();
 
     useEffect(() => {
@@ -32,4 +32,4 @@ const ButtonWeekDay = (props) => {
     )
 }
 
-export default ButtonWeekDay;
+export default ButtonsWeekDay;

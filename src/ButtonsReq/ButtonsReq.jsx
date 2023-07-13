@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import reqButStyle from './ButtonsReq.module.css';
-import ButtonWeekDay from '../ButtonToggle/ButtonToggle';
-import { nameToday, nameWeek } from "../Data/Data";
-
+import ButtonsWeekDay from '../ButtonsWeekDay/ButtonsWeekDay';
 
 const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState();
@@ -73,8 +71,7 @@ const ButtonsReq = (props) => {
                 <button className={reqButStyle.button} ref={refGeo}>{props.geoNameBut}</button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ButtonWeekDay nameButton={nameToday}/>
-                {/* <ButtonWeekDay nameButton={nameWeek}/> */}
+                <ButtonsWeekDay />
             </div>
         </div>
             

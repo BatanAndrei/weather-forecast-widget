@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import inputStyle from './Imput.module.css';
-import ButtonsReq from '../ButtonGeo/ButtonsReq';
-import ButtonWeekDay from '../ButtonToggle/ButtonToggle';
+import ButtonsReq from '../ButtonsReq/ButtonsReq';
 import { nameRecGeo, nameReqWeather } from '../Data/Data';
 
 const InputTown = () => {
@@ -17,10 +16,6 @@ const InputTown = () => {
             <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} />
             <div className={inputStyle.containerReq}>
                 <ButtonsReq dataInputForReq={dataInputField} geoNameBut={nameRecGeo} weaNameBut={nameReqWeather} />
-            </div>
-            <div className={inputStyle.containerToggle}>
-                {/* <ButtonWeekDay nameButton={nameToday}/>
-                <ButtonWeekDay nameButton={nameWeek}/> */}
             </div>
         </>
     )
