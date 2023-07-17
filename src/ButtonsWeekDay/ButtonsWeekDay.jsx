@@ -1,6 +1,5 @@
 import React from 'react';
 import toggleStyle from './ButtonsWeekDay.module.css'; 
-import ShowWeather from '../ShowWeather/ShowWeather';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -35,7 +34,11 @@ const ButtonsWeekDay = (props) => {
                 <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
             </div>
             <div>
-                <ShowWeather showGeoData={props.datasGeo} showWeaData={props.datasWea} />
+                <div className={toggleStyle.displeyed}>
+                <h4>{props.datasWeaTown}</h4>
+                <h4>{props.datasWeaTemp}</h4>
+                <h4>{props.datasWeaDesc}</h4>
+            </div>
             </div>
         </div>
             

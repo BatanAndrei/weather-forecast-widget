@@ -4,13 +4,16 @@ import ButtonsWeekDay from '../ButtonsWeekDay/ButtonsWeekDay';
 
 const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState([]);
-    const [datasWea, setDatasWea] = useState([]);
+    const [datasWeaTown, setDatasWeaTown] = useState([]);
+    const [datasWeaTemp, setDatasWeaCountryTemp] = useState([]);
+    const [datasWeaDesc, setDatasWeaDesc] = useState([]);
     const [statusMess, setStatusMess] = useState('');
     const refGeo = useRef();
     const refWea = useRef();
-    const endPoint = 'https://api.openweathermap.org/data/2.5/weather?';
+    const endPointGeo = 'https://api.openweathermap.org/data/3.0/onecall?';
+    const endPointWea = 'https://api.openweathermap.org/data/2.5/weather?'
     const dataFromInput = props.dataInputBut;
-    const requestTown = `${endPoint}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`;
+    const requestTown = `${endPointWea}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
    
 
     useEffect(() => {
@@ -27,8 +30,10 @@ const ButtonsReq = (props) => {
                 refWea.current.style.fontWeight = 700;
                 fetch(requestTown)
                 .then(response => response.json())
-                .then(data => {setDatasWea(data)
-                console.log(data)})
+                .then(data => {setDatasWeaTown(data.name)
+                    setDatasWeaCountryTemp(data.main.temp)
+                    setDatasWeaDesc(data.weather[0].description)
+                /* console.log(data) */})
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
                 refWea.current.style.fontWeight = 400;
@@ -49,7 +54,7 @@ const ButtonsReq = (props) => {
     }
     
      const success = (position) => {
-        fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru`)
+        fetch(`${endPointGeo}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
         .then(response => response.json())
         .then(data => {setDatasGeo(data)
             console.log(data)})
@@ -82,7 +87,7 @@ const ButtonsReq = (props) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ButtonsWeekDay datasGeo={datasGeo} datasWea={datasWea} />
+                <ButtonsWeekDay datasGeo={datasGeo} datasWeaTown={datasWeaTown} datasWeaTemp={datasWeaTemp} datasWeaDesc={datasWeaDesc} />
             </div>
         </>
     )
