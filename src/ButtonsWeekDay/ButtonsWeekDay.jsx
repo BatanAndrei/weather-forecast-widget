@@ -35,9 +35,9 @@ const ButtonsWeekDay = (props) => {
             </div>
             <div>
                 <div className={toggleStyle.displeyed}>
-                <h4>{props.datasWeaTown}</h4>
-                <h4>{props.datasWeaTemp}</h4>
-                <h4>{props.datasWeaDesc}</h4>
+                <h4 className={toggleStyle.infoItem}>{props.datasWeaTown}</h4>
+                <h4 className={toggleStyle.infoItem}>{props.datasWeaTemp}</h4>
+                <h4 className={toggleStyle.infoItem}>{props.datasWeaDesc}</h4>
             </div>
             </div>
         </div>

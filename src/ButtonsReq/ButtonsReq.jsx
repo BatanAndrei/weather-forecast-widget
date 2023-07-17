@@ -3,10 +3,10 @@ import reqButStyle from './ButtonsReq.module.css';
 import ButtonsWeekDay from '../ButtonsWeekDay/ButtonsWeekDay';
 
 const ButtonsReq = (props) => {
-    const [datasGeo, setDatasGeo] = useState([]);
-    const [datasWeaTown, setDatasWeaTown] = useState([]);
-    const [datasWeaTemp, setDatasWeaCountryTemp] = useState([]);
-    const [datasWeaDesc, setDatasWeaDesc] = useState([]);
+    const [datasGeo, setDatasGeo] = useState();
+    const [datasWeaTown, setDatasWeaTown] = useState();
+    const [datasWeaTemp, setDatasWeaCountryTemp] = useState();
+    const [datasWeaDesc, setDatasWeaDesc] = useState();
     const [statusMess, setStatusMess] = useState('');
     const refGeo = useRef();
     const refWea = useRef();
