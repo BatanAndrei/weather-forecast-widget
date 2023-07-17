@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import reqButStyle from './ButtonsReq.module.css';
-import ButtonsWeekDay from '../ButtonsWeekDay/ToggleDisplay';
+import ButtonsWeekDay from '../ToggleDisplay/ToggleDisplay';
 
 const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState();
