@@ -1,12 +1,12 @@
 import React from 'react';
-import toggleStyle from './ButtonsWeekDay.module.css'; 
+import toggleStyle from './ToggleDisplay.module.css'; 
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
 
 
-const ButtonsWeekDay = (props) => {
+const ToggleDisplay = (props) => {
     const [state, setState] = useState();
     const ref = useRef();
 
@@ -46,4 +46,4 @@ const ButtonsWeekDay = (props) => {
     )
 }
 
-export default ButtonsWeekDay;
+export default ToggleDisplay;
