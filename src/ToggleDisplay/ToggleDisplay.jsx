@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
+import GlobalSvg from '../GlobalSvg/GlobalSvg';
 
 
 const ToggleDisplay = (props) => {
@@ -28,20 +29,21 @@ const ToggleDisplay = (props) => {
 
     return (
         <>
-        <div>
-            <div className={toggleStyle.buttonsPosition}>
-                <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{nameToday}</span></button>
-                <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
-            </div>
             <div>
+                <div className={toggleStyle.buttonsPosition}>
+                    <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{nameToday}</span></button>
+                    <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
+                </div>
                 <div className={toggleStyle.displeyed}>
-                <h4 className={toggleStyle.infoItem}>{props.datasWeaTown}</h4>
-                <h4 className={toggleStyle.infoItem}>{props.datasWeaTemp}</h4>
-                <h4 className={toggleStyle.infoItem}>{props.datasWeaDesc}</h4>
+                    <div className={toggleStyle.container}>
+                        <GlobalSvg id='sun' />
+                        <div className={toggleStyle.temp}>20</div>
+                        <div className={toggleStyle.day}>Сегодня</div>
+                        <div className={toggleStyle.time}>Время: 13:30</div>
+                        <div className={toggleStyle.city}>Город: Минск</div>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-            
         </>
     )
 }
