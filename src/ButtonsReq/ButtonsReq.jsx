@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import reqButStyle from './ButtonsReq.module.css';
-import ButtonsWeekDay from '../ToggleDisplay/ToggleDisplay';
+import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
 const ButtonsReq = (props) => {
     const [datasGeo, setDatasGeo] = useState();
-    const [datasWeaTown, setDatasWeaTown] = useState();
-    const [datasWeaTemp, setDatasWeaCountryTemp] = useState();
-    const [datasWeaDesc, setDatasWeaDesc] = useState();
+    const [datasWeaCity, setDatasWeaCity] = useState();
+    const [datasWeaTemp, setDatasWeaTemp] = useState();
+    const [datasWeaTime, setDatasWeaTime] = useState();
+    const [datasWeaDay, setDatasWeaDay] = useState();
+    const [datasWeaIcon, setDatasWeaIcon] = useState();
     const [statusMess, setStatusMess] = useState('');
     const refGeo = useRef();
     const refWea = useRef();
@@ -30,10 +32,13 @@ const ButtonsReq = (props) => {
                 refWea.current.style.fontWeight = 700;
                 fetch(requestTown)
                 .then(response => response.json())
-                .then(data => {setDatasWeaTown(data.name)
-                    setDatasWeaCountryTemp(data.main.temp)
-                    setDatasWeaDesc(data.weather[0].description)
-                console.log()})
+                .then(data => {
+                    setDatasWeaCity(data.name)
+                    setDatasWeaTemp(data.main.temp)
+                    setDatasWeaTime(data)
+                    setDatasWeaDay(data)
+                    setDatasWeaIcon(data)
+                console.log(data)})
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
                 refWea.current.style.fontWeight = 400;
@@ -87,7 +92,7 @@ const ButtonsReq = (props) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ButtonsWeekDay datasGeo={datasGeo} datasWeaTown={datasWeaTown} datasWeaTemp={datasWeaTemp} datasWeaDesc={datasWeaDesc} />
+                <ToggleDisplay datasGeo={datasGeo} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime} datasWeaDay={datasWeaDay} datasWeaIcon={datasWeaIcon} />
             </div>
         </>
     )

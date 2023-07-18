@@ -1,0 +1,22 @@
+.temp {
+    margin: 0px;
+    font-size: 20px;
+    color: rgb(76, 179, 231);
+}
+
+.day {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.time {
+    font-size: 15px;
+    color: rgb(90, 89, 89);
+}
+
+.city {
+    font-size: 15px;
+    color: rgb(90, 89, 89);
+}

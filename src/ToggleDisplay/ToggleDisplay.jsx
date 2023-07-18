@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
-import GlobalSvg from '../GlobalSvg/GlobalSvg';
+import ThisDay from '../ThisDay/ThisDay';
 
 
 const ToggleDisplay = (props) => {
@@ -36,11 +36,7 @@ const ToggleDisplay = (props) => {
                 </div>
                 <div className={toggleStyle.displeyed}>
                     <div className={toggleStyle.container}>
-                        <GlobalSvg id='sun' />
-                        <div className={toggleStyle.temp}>20</div>
-                        <div className={toggleStyle.day}>Сегодня</div>
-                        <div className={toggleStyle.time}>Время: 13:30</div>
-                        <div className={toggleStyle.city}>Город: Минск</div>
+                        <ThisDay />
                     </div>
                 </div>
             </div>
