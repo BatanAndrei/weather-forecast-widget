@@ -7,7 +7,7 @@ const ButtonsReq = (props) => {
     const [datasWeaCity, setDatasWeaCity] = useState();
     const [datasWeaTemp, setDatasWeaTemp] = useState();
     const [datasWeaTime, setDatasWeaTime] = useState();
-    const [datasWeaDay, setDatasWeaDay] = useState();
+    //const [datasWeaDay, setDatasWeaDay] = useState();
     const [datasWeaIcon, setDatasWeaIcon] = useState();
     const [statusMess, setStatusMess] = useState('');
     const refGeo = useRef();
@@ -35,9 +35,8 @@ const ButtonsReq = (props) => {
                 .then(data => {
                     setDatasWeaCity(data.name)
                     setDatasWeaTemp(data.main.temp)
-                    setDatasWeaTime(data)
-                    setDatasWeaDay(data)
-                    setDatasWeaIcon(data)
+                    setDatasWeaTime(data.dt)
+                    setDatasWeaIcon(data.weather[0].id)
                 console.log(data)})
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
@@ -92,7 +91,7 @@ const ButtonsReq = (props) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ToggleDisplay datasGeo={datasGeo} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime} datasWeaDay={datasWeaDay} datasWeaIcon={datasWeaIcon} />
+                <ToggleDisplay datasGeo={datasGeo} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />
             </div>
         </>
     )

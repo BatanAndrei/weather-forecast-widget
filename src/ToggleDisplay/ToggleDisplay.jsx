@@ -36,7 +36,7 @@ const ToggleDisplay = (props) => {
                 </div>
                 <div className={toggleStyle.displeyed}>
                     <div className={toggleStyle.container}>
-                        <ThisDay />
+                        <ThisDay datasWeaCity={props.datasWeaCity} datasWeaTemp={props.datasWeaTemp} datasWeaTime={props.datasWeaTime}  datasWeaIcon={props.datasWeaIcon} />
                     </div>
                 </div>
             </div>
