@@ -19,11 +19,10 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     const refGeo = useRef();
     const refWea = useRef();
 
-    const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
-   
     const dataFromInput = dataInput;
-  
-    const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
+    const key = '1cc8827af65271374080f61bcb1007fe';
+    const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
+    const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataFromInput}&limit=1&appid=${key}&lang=ru&units=metric`;
    
     useEffect(() => {
         const heandleWeahter = (e) => {
@@ -38,12 +37,13 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     
             if(e.target === refWea.current && dataFromInput){
                 setStatusMess(' ')
+                setStatusMess('По выбранному городу...');
                 refWea.current.style.fontWeight = 700;
                 fetch(geoCoding)
                 .then(response => response.json())
                 .then(data => {
                   
-                    fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
+                    fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                     .then(response => response.json())
                     .then(data => {
                         setDatasWeaCity(data.timezone)
@@ -57,7 +57,6 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
                 refWea.current.style.fontWeight = 400;
             }
-        
         }
         window.addEventListener("click", heandleWeahter)
 
@@ -66,14 +65,13 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
         }
     },[geoCoding])
 
-
     const error = () => {
         alert('Введите город или населённый пункт. Воспользуйтесь кнопкой "Прогноз по городу"');
         refGeo.current.style.fontWeight = 400;
     }
     
      const success = (position) => {
-        fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
+        fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${key}&lang=ru&units=metric`)
         .then(response => response.json())
         .then(data => {
             setDatasGeoCity(data.timezone)
@@ -90,7 +88,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
                 if (!navigator.geolocation) {
                     setStatusMess('Geolocation не поддерживается вашим браузером');
                 }else{
-                    setStatusMess('По местоположению...');
+                    setStatusMess('По геопозиции...');
                     navigator.geolocation.getCurrentPosition(success, error)
                 }
             }
