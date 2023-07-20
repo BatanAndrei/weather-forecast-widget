@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import StyleDay from './ThisDayWea.module.css';
 import GlobalSvg from '../GlobalSvg/GlobalSvg';
 
@@ -26,8 +26,8 @@ const ThisDay = ({ datasWeaTime, datasWeaTemp, datasWeaIcon, datasWeaCity }) => 
     let resultTime = valuesDateTime[1]
   
     return (
-        <>
-            <div className={StyleDay.container}>
+        <> 
+            <div className={StyleDay.container}> 
                 <GlobalSvg icon={datasWeaIcon} />
                 <h4 className={StyleDay.temp}>{dataTemp}°</h4>
                 <h4 className={StyleDay.day}>Сегодня: {resultDate}</h4>
