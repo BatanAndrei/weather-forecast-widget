@@ -12,7 +12,6 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
     const [state, setState] = useState();
     const ref = useRef();
 
-
     useEffect(() => {
         function toggleWeather(e) {
             if(e.target === ref.current){
@@ -26,7 +25,7 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
         return () => {
         window.removeEventListener("click", toggleWeather)
         }
-      },[])
+      },[]);
 
     return (
         <>

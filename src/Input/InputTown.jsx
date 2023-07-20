@@ -9,7 +9,7 @@ const InputTown = () => {
     function handleChange(e) {
         setdataInput(e.target.value);
           }
-
+          
     return (
         <>
             <h1 className={inputStyle.text}>Прогноз погоды</h1>

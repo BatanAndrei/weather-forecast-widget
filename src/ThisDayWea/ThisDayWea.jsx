@@ -19,11 +19,11 @@ const ThisDay = ({ datasWeaTime, datasWeaTemp, datasWeaIcon, datasWeaCity }) => 
         let valueDate = date + '.' + month;
         let valueTime = hour + ':' + min;
        
-            return [valueDate, valueTime];
+        return [valueDate, valueTime];
     };
     let valuesDateTime = timeConverter(dataDateTime)
     let resultDate = valuesDateTime[0];
-    let resultTime = valuesDateTime[1]
+    let resultTime = valuesDateTime[1];
   
     return (
         <> 
