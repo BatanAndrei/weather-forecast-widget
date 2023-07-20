@@ -2,19 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import reqButStyle from './ButtonsReq.module.css';
 import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
-const ButtonsReq = (props) => {
+const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
     const [datasGeo, setDatasGeo] = useState();
     const [datasWeaCity, setDatasWeaCity] = useState();
-    const [datasWeaTemp, setDatasWeaTemp] = useState();
-    const [datasWeaTime, setDatasWeaTime] = useState();
-    //const [datasWeaDay, setDatasWeaDay] = useState();
+    const [datasWeaTemp, setDatasWeaTemp] = useState('');
+    const [datasWeaTime, setDatasWeaTime] = useState('');
     const [datasWeaIcon, setDatasWeaIcon] = useState();
     const [statusMess, setStatusMess] = useState('');
     const refGeo = useRef();
     const refWea = useRef();
     const endPointGeo = 'https://api.openweathermap.org/data/3.0/onecall?';
     const endPointWea = 'https://api.openweathermap.org/data/2.5/weather?'
-    const dataFromInput = props.dataInputBut;
+    const dataFromInput = dataInputBut;
     const requestTown = `${endPointWea}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
    
    
@@ -36,7 +35,7 @@ const ButtonsReq = (props) => {
                     setDatasWeaCity(data.name)
                     setDatasWeaTemp(data.main.temp)
                     setDatasWeaTime(data.dt)
-                    setDatasWeaIcon(data.weather[0].id)
+                    setDatasWeaIcon(data.weather[0].icon)
                 console.log(data)})
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
@@ -87,8 +86,8 @@ const ButtonsReq = (props) => {
         <>
             <p className={reqButStyle.message}>{statusMess}</p>
             <div className={reqButStyle.buttonsReqPosition}>
-                <button className={reqButStyle.buttonPoss}><section ref={refWea}>{props.weaNameBut}</section></button>
-                <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{props.geoNameBut}</section></button>
+                <button className={reqButStyle.buttonPoss}><section ref={refWea}>{weaNameBut}</section></button>
+                <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
                 <ToggleDisplay datasGeo={datasGeo} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />

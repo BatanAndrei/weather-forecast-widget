@@ -7,7 +7,7 @@ import { nameToday, nameWeek } from '../Data/Data';
 import ThisDay from '../ThisDay/ThisDay';
 
 
-const ToggleDisplay = (props) => {
+const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon }) => {
     const [state, setState] = useState();
     const ref = useRef();
 
@@ -36,7 +36,7 @@ const ToggleDisplay = (props) => {
                 </div>
                 <div className={toggleStyle.displeyed}>
                     <div className={toggleStyle.container}>
-                        <ThisDay datasWeaCity={props.datasWeaCity} datasWeaTemp={props.datasWeaTemp} datasWeaTime={props.datasWeaTime}  datasWeaIcon={props.datasWeaIcon} />
+                        <ThisDay datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />
                     </div>
                 </div>
             </div>
