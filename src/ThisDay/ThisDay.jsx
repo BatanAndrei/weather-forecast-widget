@@ -27,11 +27,13 @@ const ThisDay = ({ datasWeaTime, datasWeaTemp, datasWeaIcon, datasWeaCity }) => 
   
     return (
         <>
-            <GlobalSvg icon={datasWeaIcon} />
-            <h4 className={StyleDay.temp}>{dataTemp}°</h4>
-            <h4 className={StyleDay.day}>Сегодня: {resultDate}</h4>
-            <h4 className={StyleDay.time}>Время: {resultTime}</h4>
-            <h4 className={StyleDay.city}>Город: {datasWeaCity}</h4>
+            <div className={StyleDay.container}>
+                <GlobalSvg icon={datasWeaIcon} />
+                <h4 className={StyleDay.temp}>{dataTemp}°</h4>
+                <h4 className={StyleDay.day}>Сегодня: {resultDate}</h4>
+                <h4 className={StyleDay.time}>Время: {resultTime}</h4>
+                <h4 className={StyleDay.city}>Город: {datasWeaCity}</h4>
+            </div>
         </>
     )
 }
