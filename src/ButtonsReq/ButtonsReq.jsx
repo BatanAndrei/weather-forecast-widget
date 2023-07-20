@@ -14,6 +14,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
     const [datasWeaIcon, setDatasWeaIcon] = useState();
 
     const [statusMess, setStatusMess] = useState('');
+    const [flagWeaGeo, setFlagWeaGeo] = useState(null)
 
     const refGeo = useRef();
     const refWea = useRef();
@@ -25,11 +26,13 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
    
     useEffect(() => {
         const heandleWeahter = (e) => {
+            setFlagWeaGeo(false)
             if(e.target === refGeo.current){
                 refGeo.current.style.fontWeight = 700;
                 refWea.current.style.fontWeight = 400;
             }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
                 refGeo.current.style.fontWeight = 400;
+                setFlagWeaGeo(true)
             }
     
             if(e.target === refWea.current && dataFromInput){
@@ -75,11 +78,12 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
 
         useEffect(() => {
             const heandlerGeo = (e) => {
+                setFlagWeaGeo(false)
                 if(e.target === refGeo.current){
                 if (!navigator.geolocation) {
                     setStatusMess('Geolocation не поддерживается вашим браузером');
                 }else{
-                    setStatusMess('Определение местоположения...');
+                    setStatusMess('По местоположению...');
                     navigator.geolocation.getCurrentPosition(success, error)
                 }
             }
@@ -100,7 +104,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />
+                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} flagWeaGeo={flagWeaGeo}/>
             </div>
         </>
     )  
