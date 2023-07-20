@@ -27,13 +27,13 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     useEffect(() => {
         const heandleWeahter = (e) => {
             if(e.target === refWea.current) {
+                setVisibleCurrentDay(true)
                 refWea.current.style.fontWeight = 700;
             }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
                 refWea.current.style.fontWeight = 400;
             }
      
             if(e.target === refWea.current && dataFromInput){
-                setVisibleCurrentDay(true)
                 setStatusMess(' ')
                 setStatusMess('По выбранному городу...');
                 refWea.current.style.fontWeight = 700;
@@ -82,12 +82,12 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
         useEffect(() => {
             const heandlerGeo = (e) => {
                 if(e.target === refGeo.current) {
+                    setVisibleCurrentDay(false)
                     refGeo.current.style.fontWeight = 700;
                 }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
                     refGeo.current.style.fontWeight = 400;
                 }
-
-                setVisibleCurrentDay(false)
+                
                 if(e.target === refGeo.current){
                 if (!navigator.geolocation) {
                     setStatusMess('Geolocation не поддерживается вашим браузером');
