@@ -19,10 +19,11 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     const refGeo = useRef();
     const refWea = useRef();
 
-    const endPointGeo = 'https://api.openweathermap.org/data/3.0/onecall?';
-    const endPointWea = 'https://api.openweathermap.org/data/2.5/weather?'
+    const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
+   
     const dataFromInput = dataInput;
-    const requestTown = `${endPointWea}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
+  
+    const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
    
     useEffect(() => {
         const heandleWeahter = (e) => {
@@ -38,14 +39,20 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
             if(e.target === refWea.current && dataFromInput){
                 setStatusMess(' ')
                 refWea.current.style.fontWeight = 700;
-                fetch(requestTown)
+                fetch(geoCoding)
                 .then(response => response.json())
                 .then(data => {
-                    setDatasWeaCity(data.name)
-                    setDatasWeaTemp(data.main.temp)
-                    setDatasWeaTime(data.dt)
-                    setDatasWeaIcon(data.weather[0].icon)
-                console.log(data)})
+                  
+                    fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setDatasWeaCity(data.timezone)
+                        setDatasWeaTemp(data.current.temp)
+                        setDatasWeaTime(data.current.dt)
+                        setDatasWeaIcon(data.current.weather[0].icon)
+                    console.log(data)})
+            })
+                
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
                 setStatusMess('↑ ↑ ↑ - Заполните поле - ↑ ↑ ↑');
                 refWea.current.style.fontWeight = 400;
@@ -57,7 +64,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
         return () => {
         window.removeEventListener("click", heandleWeahter)
         }
-    },[requestTown])
+    },[geoCoding])
 
 
     const error = () => {
@@ -66,7 +73,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     }
     
      const success = (position) => {
-        fetch(`${endPointGeo}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
+        fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
         .then(response => response.json())
         .then(data => {
             setDatasGeoCity(data.timezone)
