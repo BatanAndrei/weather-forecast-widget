@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StyleDay from './ThisDay.module.css';
+import StyleDay from './ThisDayWea.module.css';
 import GlobalSvg from '../GlobalSvg/GlobalSvg';
 
 const ThisDay = ({ datasWeaTime, datasWeaTemp, datasWeaIcon, datasWeaCity }) => {

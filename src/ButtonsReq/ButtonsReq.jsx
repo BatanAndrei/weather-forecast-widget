@@ -3,19 +3,25 @@ import reqButStyle from './ButtonsReq.module.css';
 import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
 const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
-    const [datasGeo, setDatasGeo] = useState();
+    const [datasGeoCity, setDatasGeoCity] = useState();
+    const [datasGeoTemp, setDatasGeoTemp] = useState('');
+    const [datasGeoTime, setDatasGeoTime] = useState('');
+    const [datasGeoIcon, setDatasGeoIcon] = useState();
+
     const [datasWeaCity, setDatasWeaCity] = useState();
     const [datasWeaTemp, setDatasWeaTemp] = useState('');
     const [datasWeaTime, setDatasWeaTime] = useState('');
     const [datasWeaIcon, setDatasWeaIcon] = useState();
+
     const [statusMess, setStatusMess] = useState('');
+
     const refGeo = useRef();
     const refWea = useRef();
+
     const endPointGeo = 'https://api.openweathermap.org/data/3.0/onecall?';
     const endPointWea = 'https://api.openweathermap.org/data/2.5/weather?'
     const dataFromInput = dataInputBut;
     const requestTown = `${endPointWea}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
-   
    
     useEffect(() => {
         const heandleWeahter = (e) => {
@@ -59,7 +65,11 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
      const success = (position) => {
         fetch(`${endPointGeo}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`)
         .then(response => response.json())
-        .then(data => {setDatasGeo(data)
+        .then(data => {
+            setDatasGeoCity(data.timezone)
+            setDatasGeoTemp(data.current.temp)
+            setDatasGeoTime(data.current.dt)
+            setDatasGeoIcon(data.current.weather[0].icon)
             console.log(data)})
         }
 
@@ -90,10 +100,10 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ToggleDisplay datasGeo={datasGeo} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />
+                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />
             </div>
         </>
-    )
+    )  
 }
 
 export default ButtonsReq;

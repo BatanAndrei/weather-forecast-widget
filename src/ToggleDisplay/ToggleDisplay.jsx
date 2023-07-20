@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
-import ThisDay from '../ThisDay/ThisDay';
+import ThisDayWea from '../ThisDayWea/ThisDayWea';
+import ThisDayGeo from '../ThisDayGeo/ThisDayGeo';
 
 
-const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon }) => {
+const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon }) => {
     const [state, setState] = useState();
     const ref = useRef();
 
@@ -35,7 +36,8 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon 
                     <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
                 </div>
                 <div className={toggleStyle.displeyed}>
-                    <ThisDay datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />
+                    {/* <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} /> */}
+                    <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />
                 </div>
             </div>
         </>
