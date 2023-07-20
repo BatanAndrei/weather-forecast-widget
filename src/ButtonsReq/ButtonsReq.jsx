@@ -26,16 +26,14 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
    
     useEffect(() => {
         const heandleWeahter = (e) => {
-            setVisibleCurrentDay(false)
-            if(e.target === refGeo.current){
-                refGeo.current.style.fontWeight = 700;
+            if(e.target === refWea.current) {
+                refWea.current.style.fontWeight = 700;
+            }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
                 refWea.current.style.fontWeight = 400;
-            }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
-                refGeo.current.style.fontWeight = 400;
-                setVisibleCurrentDay(true)
             }
-    
+     
             if(e.target === refWea.current && dataFromInput){
+                setVisibleCurrentDay(true)
                 setStatusMess(' ')
                 setStatusMess('По выбранному городу...');
                 refWea.current.style.fontWeight = 700;
@@ -83,6 +81,12 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
 
         useEffect(() => {
             const heandlerGeo = (e) => {
+                if(e.target === refGeo.current) {
+                    refGeo.current.style.fontWeight = 700;
+                }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
+                    refGeo.current.style.fontWeight = 400;
+                }
+
                 setVisibleCurrentDay(false)
                 if(e.target === refGeo.current){
                 if (!navigator.geolocation) {
