@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import reqButStyle from './ButtonsReq.module.css';
 import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
-const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
+const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     const [datasGeoCity, setDatasGeoCity] = useState();
     const [datasGeoTemp, setDatasGeoTemp] = useState('');
     const [datasGeoTime, setDatasGeoTime] = useState('');
@@ -21,7 +21,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInputBut }) => {
 
     const endPointGeo = 'https://api.openweathermap.org/data/3.0/onecall?';
     const endPointWea = 'https://api.openweathermap.org/data/2.5/weather?'
-    const dataFromInput = dataInputBut;
+    const dataFromInput = dataInput;
     const requestTown = `${endPointWea}q=${dataFromInput}&limit=1&appid=1cc8827af65271374080f61bcb1007fe&lang=ru&units=metric`;
    
     useEffect(() => {

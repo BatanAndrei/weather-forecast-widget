@@ -4,18 +4,18 @@ import ButtonsReq from '../ButtonsReq/ButtonsReq';
 import { nameRecGeo, nameReqWeather } from '../Data/Data';
 
 const InputTown = () => {
-    const [dataInputField, setdataInputField] = useState('');
+    const [dataInput, setdataInput] = useState('');
     
     function handleChange(e) {
-        setdataInputField(e.target.value);
+        setdataInput(e.target.value);
           }
 
     return (
         <>
             <h1 className={inputStyle.text}>Прогноз погоды</h1>
-            <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} required />
+            <input type="text" className={inputStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} value={dataInput} />
             <div>
-                <ButtonsReq dataInputBut={dataInputField} geoNameBut={nameRecGeo} weaNameBut={nameReqWeather} />
+                <ButtonsReq dataInput={dataInput} geoNameBut={nameRecGeo} weaNameBut={nameReqWeather} />
             </div>
         </>
     )
