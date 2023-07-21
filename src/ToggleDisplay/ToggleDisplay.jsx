@@ -6,12 +6,13 @@ import { useEffect } from 'react';
 import { nameToday, nameWeek } from '../Data/Data';
 import ThisDayWea from '../ThisDayWea/ThisDayWea';
 import ThisDayGeo from '../ThisDayGeo/ThisDayGeo';
+import ThisWeekWea from '../ThisWeekWea/ThisWeekWea';
 
 
-const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay }) => {
+const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay, datasWeekWea }) => {
     const [state, setState] = useState();
     const ref = useRef();
-    
+
     useEffect(() => {
         function toggleWeather(e) {
             if(e.target === ref.current){
@@ -35,9 +36,9 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
                     <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
                 </div>
                 <div className={toggleStyle.displeyed}>
-                    {visibleCurrentDay === true && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
-                    {visibleCurrentDay === false && <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />}
-                    
+                    {/* {visibleCurrentDay === true && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
+                    {visibleCurrentDay === false && <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />} */}
+                    <ThisWeekWea datasWeekWea={datasWeekWea} />
                 </div>
             </div>
         </>

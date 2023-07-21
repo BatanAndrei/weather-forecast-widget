@@ -14,6 +14,8 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     const [datasWeaTime, setDatasWeaTime] = useState('');
     const [datasWeaIcon, setDatasWeaIcon] = useState();
 
+    const [datasWeekWea, setDatasWeekWea] = useState([]);
+
     const [statusMess, setStatusMess] = useState('');
     const [visibleCurrentDay, setVisibleCurrentDay] = useState(null)
 
@@ -49,7 +51,9 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
                         setDatasWeaTemp(data.current.temp)
                         setDatasWeaTime(data.current.dt)
                         setDatasWeaIcon(data.current.weather[0].icon)
-                    console.log(data)})
+
+                        setDatasWeekWea(data.daily)
+                     console.log(data)})
             })
                 
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
@@ -77,7 +81,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
             setDatasGeoTemp(data.current.temp)
             setDatasGeoTime(data.current.dt)
             setDatasGeoIcon(data.current.weather[0].icon)
-            console.log(data)})
+            /* console.log(data) */})
         }
 
         useEffect(() => {
@@ -114,7 +118,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay}/>
+                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} />
             </div>
         </>
     )  
