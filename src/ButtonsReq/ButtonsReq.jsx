@@ -57,8 +57,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
 
                         setDatasWeekWea(data.daily)
                         setDatasWeekWeaCity(data)
-
-                     console.log(data)})
+                })
             })
                 
             }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
@@ -89,7 +88,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
 
             setDatasWeekGeo(data.daily)
             setDatasWeekGeoCity(data)
-            /* console.log(data) */})
+            })
         }
 
         useEffect(() => {
