@@ -15,6 +15,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
     const [datasWeaIcon, setDatasWeaIcon] = useState();
 
     const [datasWeekWea, setDatasWeekWea] = useState([]);
+    const [datasWeekWeaCity, setDatasWeekWeaCity] = useState('');
 
     const [statusMess, setStatusMess] = useState('');
     const [visibleCurrentDay, setVisibleCurrentDay] = useState(null)
@@ -53,6 +54,8 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
                         setDatasWeaIcon(data.current.weather[0].icon)
 
                         setDatasWeekWea(data.daily)
+                        setDatasWeekWeaCity(data)
+
                      console.log(data)})
             })
                 
@@ -118,7 +121,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
                 <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{geoNameBut}</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
-                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} />
+                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} />
             </div>
         </>
     )  

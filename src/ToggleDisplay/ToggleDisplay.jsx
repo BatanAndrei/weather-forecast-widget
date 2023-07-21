@@ -9,7 +9,7 @@ import ThisDayGeo from '../ThisDayGeo/ThisDayGeo';
 import ThisWeekWea from '../ThisWeekWea/ThisWeekWea';
 
 
-const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay, datasWeekWea }) => {
+const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay, datasWeekWea, datasWeekWeaCity }) => {
     const [state, setState] = useState();
     const ref = useRef();
 
@@ -38,7 +38,7 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
                 <div className={toggleStyle.displeyed}>
                     {/* {visibleCurrentDay === true && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
                     {visibleCurrentDay === false && <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />} */}
-                    <ThisWeekWea datasWeekWea={datasWeekWea} />
+                    <ThisWeekWea datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} />
                 </div>
             </div>
         </>
