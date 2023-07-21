@@ -3,6 +3,7 @@ import StyleDay from './ThisDayWea.module.css';
 import GlobalSvg from '../GlobalSvg/GlobalSvg';
 
 const ThisDay = ({ datasWeaTime, datasWeaTemp, datasWeaIcon, datasWeaCity }) => {
+   
      const dataTemp = Math.round(datasWeaTemp);
      const dataDateTime = datasWeaTime;
 

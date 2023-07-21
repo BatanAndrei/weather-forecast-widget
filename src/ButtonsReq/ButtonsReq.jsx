@@ -3,6 +3,7 @@ import reqButStyle from './ButtonsReq.module.css';
 import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
 const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
+    
     const [datasGeoCity, setDatasGeoCity] = useState();
     const [datasGeoTemp, setDatasGeoTemp] = useState('');
     const [datasGeoTime, setDatasGeoTime] = useState('');
@@ -61,7 +62,7 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
         return () => {
         window.removeEventListener("click", heandleWeahter)
         }
-    },[geoCoding])
+    },[dataFromInput])
 
     const error = () => {
         alert('Введите город или населённый пункт. Воспользуйтесь кнопкой "Прогноз по городу"');

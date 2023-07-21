@@ -11,7 +11,7 @@ import ThisDayGeo from '../ThisDayGeo/ThisDayGeo';
 const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay }) => {
     const [state, setState] = useState();
     const ref = useRef();
-
+    
     useEffect(() => {
         function toggleWeather(e) {
             if(e.target === ref.current){
