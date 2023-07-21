@@ -12,7 +12,7 @@ import ThisWeekGeo from '../ThisWeekGeo/ThisWeekGeo';
 
 const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay, datasWeekWea, datasWeekWeaCity, datasWeekGeo, datasWeekGeoCity }) => {
     const [state, setState] = useState();
-    const [visibleCurrentWeek, setVisibleCurrentWeek] = useState(null) 
+    const [visibleCurrentWeek, setVisibleCurrentWeek] = useState(false) 
     const ref = useRef();
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
                 setVisibleCurrentWeek(true)
                 setState(true);   
             }else if(e.target !== ref.current && e.target.tagName === 'SPAN'){
-                setVisibleCurrentWeek(false)
+                setVisibleCurrentWeek(false) 
                 setState(false);
             }
         }
@@ -40,12 +40,13 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
                     <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
                 </div>
                 <div className={toggleStyle.displeyed}>
-                    {/* {visibleCurrentDay === true && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
-                    {visibleCurrentDay === false && <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />} */}
+                    {visibleCurrentDay === true && visibleCurrentWeek === false && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
 
-                    {visibleCurrentWeek === true && <ThisWeekWea datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} />}
-                   
-                    {visibleCurrentWeek === false && <ThisWeekGeo datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />}
+                    {visibleCurrentDay === true && visibleCurrentWeek === true && <ThisWeekWea datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} />}
+
+                    {visibleCurrentDay === false && visibleCurrentWeek === false && <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />}
+
+                    {visibleCurrentDay === false && visibleCurrentWeek === true && <ThisWeekGeo datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />}
                 </div>
             </div>
         </>
