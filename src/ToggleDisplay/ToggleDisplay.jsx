@@ -12,13 +12,16 @@ import ThisWeekGeo from '../ThisWeekGeo/ThisWeekGeo';
 
 const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay, datasWeekWea, datasWeekWeaCity, datasWeekGeo, datasWeekGeoCity }) => {
     const [state, setState] = useState();
+    const [visibleCurrentWeek, setVisibleCurrentWeek] = useState(null) 
     const ref = useRef();
 
     useEffect(() => {
         function toggleWeather(e) {
             if(e.target === ref.current){
+                setVisibleCurrentWeek(true)
                 setState(true);   
             }else if(e.target !== ref.current && e.target.tagName === 'SPAN'){
+                setVisibleCurrentWeek(false)
                 setState(false);
             }
         }
@@ -39,8 +42,10 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
                 <div className={toggleStyle.displeyed}>
                     {/* {visibleCurrentDay === true && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
                     {visibleCurrentDay === false && <ThisDayGeo datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime}  datasGeoIcon={datasGeoIcon} />} */}
-                    {/* <ThisWeekWea datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} /> */}
-                    <ThisWeekGeo datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />
+
+                    {visibleCurrentWeek === true && <ThisWeekWea datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} />}
+                   
+                    {visibleCurrentWeek === false && <ThisWeekGeo datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />}
                 </div>
             </div>
         </>
