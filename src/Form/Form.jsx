@@ -3,8 +3,8 @@ import FormStyle from './Form.module.css';
 import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
 
-const CustomForm = () => {
-    console.log('FORM')
+const CustomForm = ({ generalDatasWea, generalDatasGeo, setVisibleCurrentDay }) => {
+   
     const [dataInput, setdataInput] = useState('');
 
     const handleChange = (e) => {
@@ -13,7 +13,7 @@ const CustomForm = () => {
 
 
 
-        const [datasGeoCity, setDatasGeoCity] = useState();
+        /* const [datasGeoCity, setDatasGeoCity] = useState();
         const [datasGeoTemp, setDatasGeoTemp] = useState('');
         const [datasGeoTime, setDatasGeoTime] = useState('');
         const [datasGeoIcon, setDatasGeoIcon] = useState();
@@ -26,10 +26,10 @@ const CustomForm = () => {
         const [datasWeekWea, setDatasWeekWea] = useState([]);
         const [datasWeekWeaCity, setDatasWeekWeaCity] = useState('');
         const [datasWeekGeo, setDatasWeekGeo] = useState([]);
-        const [datasWeekGeoCity, setDatasWeekGeoCity] = useState('');
+        const [datasWeekGeoCity, setDatasWeekGeoCity] = useState('');*/
     
         const [statusMess, setStatusMess] = useState('');
-        const [visibleCurrentDay, setVisibleCurrentDay] = useState(null)
+        //const [visibleCurrentDay, setVisibleCurrentDay] = useState(null)
     
         const refGeo = useRef();
         const refWea = useRef();
@@ -59,13 +59,14 @@ const CustomForm = () => {
                         fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                         .then(response => response.json())
                         .then(data => {
-                            setDatasWeaCity(data.timezone)
+                            generalDatasWea(data)
+                            /* setDatasWeaCity(data.timezone)
                             setDatasWeaTemp(data.current.temp)
                             setDatasWeaTime(data.current.dt)
                             setDatasWeaIcon(data.current.weather[0].icon)
     
                             setDatasWeekWea(data.daily)
-                            setDatasWeekWeaCity(data)
+                            setDatasWeekWeaCity(data) */
                     })
                 })
                     
@@ -90,13 +91,14 @@ const CustomForm = () => {
             fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${key}&lang=ru&units=metric`)
             .then(response => response.json())
             .then(data => {
-                setDatasGeoCity(data.timezone)
+                generalDatasGeo(data)
+                /* setDatasGeoCity(data.timezone)
                 setDatasGeoTemp(data.current.temp)
                 setDatasGeoTime(data.current.dt)
                 setDatasGeoIcon(data.current.weather[0].icon)
     
                 setDatasWeekGeo(data.daily)
-                setDatasWeekGeoCity(data)
+                setDatasWeekGeoCity(data) */
                 })
             }
     
@@ -136,9 +138,6 @@ const CustomForm = () => {
             <div className={FormStyle.buttonsReqPosition}>
                 <button className={FormStyle.buttonPoss}><section ref={refWea}>Прогноз по городу</section></button>
                 <button className={FormStyle.buttonPoss}><section ref={refGeo}>Прогноз по GEO</section></button>
-            </div>
-            <div className={FormStyle.buttonToggle}>
-                <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />
             </div>
         </>
     )

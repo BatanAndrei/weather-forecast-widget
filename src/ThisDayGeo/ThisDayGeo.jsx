@@ -6,7 +6,7 @@ const ThisDayGeo = ({ datasGeoTime, datasGeoTemp, datasGeoIcon, datasGeoCity }) 
 
     const dataTemp = Math.round(datasGeoTemp);
     const dataDateTime = datasGeoTime;
-
+    console.log()
     const timeConverter = (UNIX_timestamp) => {
        let a = new Date(UNIX_timestamp * 1000);
        let months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
@@ -33,7 +33,7 @@ const ThisDayGeo = ({ datasGeoTime, datasGeoTemp, datasGeoIcon, datasGeoCity }) 
                 <h4 className={StyleDay.temp}>{dataTemp}°</h4>
                 <h4 className={StyleDay.day}>Сегодня: {resultDate}</h4>
                 <h4 className={StyleDay.time}>Время: {resultTime}</h4>
-                <h4 className={StyleDay.city}>Город: {datasGeoCity}</h4>
+                <h4 className={StyleDay.city}>Город: {datasGeoCity.timezone}</h4>
             </div>
         </>
     )

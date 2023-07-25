@@ -10,7 +10,7 @@ import ThisWeekGeo from '../ThisWeekGeo/ThisWeekGeo';
 
 
 const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon, datasGeoCity, datasGeoTemp, datasGeoTime, datasGeoIcon, visibleCurrentDay, datasWeekWea, datasWeekWeaCity, datasWeekGeo, datasWeekGeoCity }) => {
-    console.log('TOGGLED')
+   
     const [state, setState] = useState();
     const [visibleCurrentWeek, setVisibleCurrentWeek] = useState(false) 
     const ref = useRef();
