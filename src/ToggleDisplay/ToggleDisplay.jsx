@@ -3,7 +3,6 @@ import toggleStyle from './ToggleDisplay.module.css';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { nameToday, nameWeek } from '../Data/Data';
 import ThisDayWea from '../ThisDayWea/ThisDayWea';
 import ThisDayGeo from '../ThisDayGeo/ThisDayGeo';
 import ThisWeekWea from '../ThisWeekWea/ThisWeekWea';
@@ -36,8 +35,8 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
         <>
             <div>
                 <div className={toggleStyle.buttonsPosition}>
-                    <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>{nameToday}</span></button>
-                    <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>{nameWeek}</span></button>
+                    <button className={state ? toggleStyle.buttonPassive : toggleStyle.buttonActive}><span ref={ref} className={toggleStyle.targetClick}>На сегодня</span></button>
+                    <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>На 5 дней</span></button>
                 </div>
                 <div className={toggleStyle.displeyed}>
                     {visibleCurrentDay === true && visibleCurrentWeek === false && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}

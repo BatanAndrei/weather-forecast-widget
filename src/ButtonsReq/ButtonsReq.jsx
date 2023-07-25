@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import reqButStyle from './ButtonsReq.module.css';
 import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
-const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
+const ButtonsReq = ({ dataInput }) => {
     
     const [datasGeoCity, setDatasGeoCity] = useState();
     const [datasGeoTemp, setDatasGeoTemp] = useState('');
@@ -121,8 +121,8 @@ const ButtonsReq = ({ weaNameBut, geoNameBut, dataInput }) => {
         <>
             <p className={reqButStyle.message}>{statusMess}</p>
             <div className={reqButStyle.buttonsReqPosition}>
-                <button className={reqButStyle.buttonPoss}><section ref={refWea}>{weaNameBut}</section></button>
-                <button className={reqButStyle.buttonPoss}><section ref={refGeo}>{geoNameBut}</section></button>
+                <button className={reqButStyle.buttonPoss}><section ref={refWea}>Прогноз по городу</section></button>
+                <button className={reqButStyle.buttonPoss}><section ref={refGeo}>Прогноз по GEO</section></button>
             </div>
             <div className={reqButStyle.buttonToggle}>
                 <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />
