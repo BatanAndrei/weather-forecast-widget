@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import FormStyle from './Form.module.css';
-import ToggleDisplay from '../ToggleDisplay/ToggleDisplay';
 
 
-const CustomForm = ({ generalDatasWea, generalDatasGeo, setVisibleCurrentDay }) => {
+const CustomForm = ({ generalDatasWea, generalDatasGeo }) => {
    
     const [dataInput, setdataInput] = useState('');
 
@@ -11,25 +10,7 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo, setVisibleCurrentDay }) 
         setdataInput(e.target.value);
         }
 
-
-
-        /* const [datasGeoCity, setDatasGeoCity] = useState();
-        const [datasGeoTemp, setDatasGeoTemp] = useState('');
-        const [datasGeoTime, setDatasGeoTime] = useState('');
-        const [datasGeoIcon, setDatasGeoIcon] = useState();
-    
-        const [datasWeaCity, setDatasWeaCity] = useState();
-        const [datasWeaTemp, setDatasWeaTemp] = useState('');
-        const [datasWeaTime, setDatasWeaTime] = useState('');
-        const [datasWeaIcon, setDatasWeaIcon] = useState();
-    
-        const [datasWeekWea, setDatasWeekWea] = useState([]);
-        const [datasWeekWeaCity, setDatasWeekWeaCity] = useState('');
-        const [datasWeekGeo, setDatasWeekGeo] = useState([]);
-        const [datasWeekGeoCity, setDatasWeekGeoCity] = useState('');*/
-    
         const [statusMess, setStatusMess] = useState('');
-        //const [visibleCurrentDay, setVisibleCurrentDay] = useState(null)
     
         const refGeo = useRef();
         const refWea = useRef();
@@ -42,7 +23,6 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo, setVisibleCurrentDay }) 
         useEffect(() => {
             const heandleWeahter = (e) => {
                 if(e.target === refWea.current) {
-                    setVisibleCurrentDay(true)
                     refWea.current.style.fontWeight = 700;
                 }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
                     refWea.current.style.fontWeight = 400;
@@ -60,13 +40,6 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo, setVisibleCurrentDay }) 
                         .then(response => response.json())
                         .then(data => {
                             generalDatasWea(data)
-                            /* setDatasWeaCity(data.timezone)
-                            setDatasWeaTemp(data.current.temp)
-                            setDatasWeaTime(data.current.dt)
-                            setDatasWeaIcon(data.current.weather[0].icon)
-    
-                            setDatasWeekWea(data.daily)
-                            setDatasWeekWeaCity(data) */
                     })
                 })
                     
@@ -92,20 +65,12 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo, setVisibleCurrentDay }) 
             .then(response => response.json())
             .then(data => {
                 generalDatasGeo(data)
-                /* setDatasGeoCity(data.timezone)
-                setDatasGeoTemp(data.current.temp)
-                setDatasGeoTime(data.current.dt)
-                setDatasGeoIcon(data.current.weather[0].icon)
-    
-                setDatasWeekGeo(data.daily)
-                setDatasWeekGeoCity(data) */
                 })
             }
     
             useEffect(() => {
                 const heandlerGeo = (e) => {
                     if(e.target === refGeo.current) {
-                        setVisibleCurrentDay(false)
                         refGeo.current.style.fontWeight = 700;
                     }else if(e.target !== refGeo.current && e.target.tagName === 'SECTION'){
                         refGeo.current.style.fontWeight = 400;

@@ -20,18 +20,18 @@ function App() {
     const [datasWeekWeaCity, setDatasWeekWeaCity] = useState('');
     const [datasWeekGeo, setDatasWeekGeo] = useState([]);
     const [datasWeekGeoCity, setDatasWeekGeoCity] = useState('');
-    
-    const [visibleCurrentDay, setVisibleCurrentDay] = useState(null);
+
+    const [visibleCurrentDay, setVisibleCurrentDay] = useState(null);    
 
     const heandleWeahter = (generalDatasWea) => {
         setDatasWeaCity(generalDatasWea);  
-        /* setDatasWeaTemp(generalDatasWea.current.temp);   
+        setDatasWeaTemp(generalDatasWea.current.temp);   
         setDatasWeaTime(generalDatasWea.current.dt);
-        setDatasWeaIcon(generalDatasWea.current.weather[0].icon); */
+        setDatasWeaIcon(generalDatasWea.current.weather[0].icon);
         
         setDatasWeekWea(generalDatasWea.daily);
         setDatasWeekWeaCity(generalDatasWea);
-
+        
         setVisibleCurrentDay(true)
     }
     
@@ -50,7 +50,7 @@ function App() {
     return (
         <div className={back.position}>
             <div className={back.context}>
-                <Form generalDatasWea={heandleWeahter} generalDatasGeo={heandlerGeo} setVisibleCurrentDay={heandleWeahter} />
+                <Form generalDatasWea={heandleWeahter} generalDatasGeo={heandlerGeo} />
             <div className={back.displayWeather}></div>
             <div className={back.buttonToggle}>
                 <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />

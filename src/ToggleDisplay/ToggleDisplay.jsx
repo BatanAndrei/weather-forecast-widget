@@ -40,7 +40,7 @@ const ToggleDisplay = ({ datasWeaCity, datasWeaTemp, datasWeaTime, datasWeaIcon,
                     <button className={state ? toggleStyle.buttonActive : toggleStyle.buttonPassive}><span ref={ref} className={toggleStyle.targetClick}>На 5 дней</span></button>
                 </div>
                 <div className={toggleStyle.displeyed}>
-                    {visibleCurrentDay === true && visibleCurrentWeek === false && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
+                   {visibleCurrentDay === true && visibleCurrentWeek === false && <ThisDayWea datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} />}
 
                     {visibleCurrentDay === true && visibleCurrentWeek === true && <ThisWeekWea datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} />}
 
