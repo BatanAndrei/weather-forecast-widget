@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import FormStyle from './Form.module.css';
+import {cities} from '../DataCity/DataCity';
 
 
 const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
@@ -10,14 +11,11 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
     const refGeo = useRef();
     const refWea = useRef();
     
-    const dataFromInput = dataInput;
     const key = '1cc8827af65271374080f61bcb1007fe';
     const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
-    const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataFromInput}&limit=1&appid=${key}&lang=ru&units=metric`;
-    const allCountryRu = `https://data-api.oxilor.com/rest/countries?key=2h-QBs2KOlThCmDZe4mGwx4px_ZCug&lng=ru`;
-    const allCountryEn = `https://data-api.oxilor.com/rest/countries?key=2h-QBs2KOlThCmDZe4mGwx4px_ZCug&lng=en`;
+    const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataInput}&limit=1&appid=${key}&lang=ru&units=metric`;
+ 
     
-
     const handleChange = (e) => {
         setdataInput(e.target.value);
         }
@@ -29,8 +27,10 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                 }else if(e.target !== refWea.current && e.target.tagName === 'SECTION'){
                     refWea.current.style.fontWeight = 400;
                 }
-         
-                if(e.target === refWea.current && dataFromInput){
+
+            for(let i = 0; i < cities.length; i++){
+
+                if(e.target === refWea.current && dataInput.toUpperCase() === cities[i].toUpperCase()){
                     setStatusMess(' ')
                     setStatusMess('По выбранному городу...');
                     refWea.current.style.fontWeight = 700;
@@ -42,29 +42,22 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                         fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                         .then(response => response.json())
                         .then(data => {
-                            /* console.log(data.timezone.split('/')[1].toUpperCase())
-                            console.log(data) */
                             GeneralDatasWea(data)
                     })
-                 /*    fetch(allCountryRu)
-                    .then(response => response.json())
-                    .then(data => {});
-                    fetch(allCountryEn)
-                    .then(response => response.json())
-                    .then(data => {data.forEach((item)=>{console.log(item.timezone.split('/')[1])})}); */
                 })
                     
-                }else if(e.target === refWea.current && !dataFromInput && e.target.tagName === 'SECTION'){
+                }else if(e.target === refWea.current && !dataInput && e.target.tagName === 'SECTION'){
                     setStatusMess('↑ ↑ ↑ - Заполните поле корректно - ↑ ↑ ↑');
                     refWea.current.style.fontWeight = 400;
                 }
+            }
             }
             window.addEventListener("click", heandleWeahter)
     
             return () => {
             window.removeEventListener("click", heandleWeahter)
             }
-        },[dataFromInput])
+        },[dataInput])
     
         const error = () => {
             alert('Введите город или населённый пункт. Воспользуйтесь кнопкой "Прогноз по городу"');
