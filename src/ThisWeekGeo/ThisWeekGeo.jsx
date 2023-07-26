@@ -3,7 +3,7 @@ import StyleWeek from '../ThisWeekGeo/ThisWeekGeo.module.css';
 import GlobalSvgWeek from '../GlobalSvgWeek/GlobalSvgWeek';
 
 const ThisWeekGeo = ({ datasWeekGeo, datasWeekGeoCity }) => {
-   
+    
     const fiveItemsWeek = datasWeekGeo.slice(0, 5);
 
     const timeConverter = (UNIX_timestamp) => {

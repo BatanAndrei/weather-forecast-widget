@@ -3,22 +3,21 @@ import FormStyle from './Form.module.css';
 
 
 const CustomForm = ({ generalDatasWea, generalDatasGeo }) => {
-   
+    
     const [dataInput, setdataInput] = useState('');
+    const [statusMess, setStatusMess] = useState('');
+    
+    const refGeo = useRef();
+    const refWea = useRef();
+    
+    const dataFromInput = dataInput;
+    const key = '1cc8827af65271374080f61bcb1007fe';
+    const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
+    const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataFromInput}&limit=1&appid=${key}&lang=ru&units=metric`;
 
     const handleChange = (e) => {
         setdataInput(e.target.value);
         }
-
-        const [statusMess, setStatusMess] = useState('');
-    
-        const refGeo = useRef();
-        const refWea = useRef();
-    
-        const dataFromInput = dataInput;
-        const key = '1cc8827af65271374080f61bcb1007fe';
-        const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
-        const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataFromInput}&limit=1&appid=${key}&lang=ru&units=metric`;
        
         useEffect(() => {
             const heandleWeahter = (e) => {
@@ -97,8 +96,6 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo }) => {
         <>
             <h1 className={FormStyle.text}>Прогноз погоды</h1>
             <input type="text" className={FormStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} />
-
-
             <p className={FormStyle.message}>{statusMess}</p>
             <div className={FormStyle.buttonsReqPosition}>
                 <button className={FormStyle.buttonPoss}><section ref={refWea}>Прогноз по городу</section></button>
