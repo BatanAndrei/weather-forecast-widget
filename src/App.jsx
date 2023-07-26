@@ -50,7 +50,7 @@ function App() {
     return (
         <div className={back.position}>
             <div className={back.context}>
-                <Form generalDatasWea={heandleWeahter} generalDatasGeo={heandlerGeo} />
+                <Form GeneralDatasWea={heandleWeahter} GeneralDatasGeo={heandlerGeo} />
             <div className={back.displayWeather}></div>
             <div className={back.buttonToggle}>
                 <ToggleDisplay datasGeoCity={datasGeoCity} datasGeoTemp={datasGeoTemp} datasGeoTime={datasGeoTime} datasGeoIcon={datasGeoIcon} datasWeaCity={datasWeaCity} datasWeaTemp={datasWeaTemp} datasWeaTime={datasWeaTime}  datasWeaIcon={datasWeaIcon} visibleCurrentDay={visibleCurrentDay} datasWeekWea={datasWeekWea} datasWeekWeaCity={datasWeekWeaCity} datasWeekGeo={datasWeekGeo} datasWeekGeoCity={datasWeekGeoCity} />
