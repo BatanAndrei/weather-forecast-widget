@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import FormStyle from './Form.module.css';
 
 
-const CustomForm = ({ generalDatasWea, generalDatasGeo }) => {
+const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
     
     const [dataInput, setdataInput] = useState('');
     const [statusMess, setStatusMess] = useState('');
@@ -38,7 +38,7 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo }) => {
                         fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                         .then(response => response.json())
                         .then(data => {
-                            generalDatasWea(data)
+                            GeneralDatasWea(data)
                     })
                 })
                     
@@ -63,7 +63,7 @@ const CustomForm = ({ generalDatasWea, generalDatasGeo }) => {
             fetch(`${endPoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${key}&lang=ru&units=metric`)
             .then(response => response.json())
             .then(data => {
-                generalDatasGeo(data)
+                GeneralDatasGeo(data)
                 })
             }
     
