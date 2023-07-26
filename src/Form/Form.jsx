@@ -11,7 +11,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
     const refGeo = useRef();
     const refWea = useRef();
     
-    const key = 'a6bb7ca4a6e0e885c4e282cc152c2f12';
+    const key = '1cc8827af65271374080f61bcb1007fe';
     const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
     const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataInput}&limit=1&appid=${key}&lang=ru&units=metric`;
  
