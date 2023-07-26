@@ -100,7 +100,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
     return (
         <>
             <h1 className={FormStyle.text}>Прогноз погоды</h1>
-            <input type="text" className={FormStyle.modification} placeholder="Введите город или населённый пункт" onChange={handleChange} />
+            <input type="text" className={FormStyle.modification} placeholder="Введите город на русском языке" onChange={handleChange} />
             <p className={FormStyle.message}>{statusMess}</p>
             <div className={FormStyle.buttonsReqPosition}>
                 <button className={FormStyle.buttonPoss}><section ref={refWea}>Прогноз по городу</section></button>
