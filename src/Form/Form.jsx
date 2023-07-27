@@ -26,7 +26,6 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                     refWea.current.style.fontWeight = 400;
                 }
 
-         
                 if(e.target === refWea.current && dataInput){
                     setStatusMess(' ')
                     setStatusMess('По выбранному городу...');
@@ -36,7 +35,6 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                     .then(response => response.json())
                     .then(data => {
                       
-
                         fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                         .then(response => response.json())
                         .then(data => {
@@ -50,7 +48,6 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                 }
             }
             
-    
         const error = () => {
             alert('Введите город или населённый пункт. Воспользуйтесь кнопкой "Прогноз по городу"');
             refGeo.current.style.fontWeight = 400;
