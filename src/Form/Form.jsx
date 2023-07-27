@@ -30,7 +30,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
 
             for(let i = 0; i < cities.length; i++){
 
-                if(e.target === refWea.current && dataInput.toUpperCase() === cities[i].toUpperCase()){
+                if(e.target === refWea.current && dataInput){
                     setStatusMess(' ')
                     setStatusMess('По выбранному городу...');
                     refWea.current.style.fontWeight = 700;
