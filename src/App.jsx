@@ -24,11 +24,12 @@ function App() {
     const [visibleCurrentDay, setVisibleCurrentDay] = useState(null);    
 
     const heandleWeahter = (generalDatasWea) => {
+
         setDatasWeaCity(generalDatasWea);  
         setDatasWeaTemp(generalDatasWea.current.temp);   
         setDatasWeaTime(generalDatasWea.current.dt);
         setDatasWeaIcon(generalDatasWea.current.weather[0].icon);
-        
+   
         setDatasWeekWea(generalDatasWea.daily);
         setDatasWeekWeaCity(generalDatasWea);
         
