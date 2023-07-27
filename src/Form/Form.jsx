@@ -14,7 +14,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
     const key = '1cc8827af65271374080f61bcb1007fe';
     const endPoint = 'https://api.openweathermap.org/data/3.0/onecall?';
     const geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${dataInput}&limit=1&appid=${key}&lang=ru&units=metric`;
- 
+   
 
     const handleChange = (e) => {
         setdataInput(e.target.value);
@@ -28,8 +28,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                     refWea.current.style.fontWeight = 400;
                 }
 
-            for(let i = 0; i < cities.length; i++){
-
+         
                 if(e.target === refWea.current && dataInput){
                     setStatusMess(' ')
                     setStatusMess('По выбранному городу...');
@@ -39,6 +38,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                     .then(response => response.json())
                     .then(data => {
                       
+
                         fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                         .then(response => response.json())
                         .then(data => {
@@ -51,7 +51,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                     refWea.current.style.fontWeight = 400;
                 }
             }
-            }
+            
             window.addEventListener("click", heandleWeahter)
     
             return () => {
