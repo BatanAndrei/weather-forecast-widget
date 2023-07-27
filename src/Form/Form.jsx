@@ -27,9 +27,7 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                 }
 
                 if(e.target === refWea.current && dataInput){
-                    setStatusMess('По выбранному городу...');
-                    refWea.current.style.fontWeight = 700;
-
+                    
                     fetch(geoCoding)
                     .then(response => response.json())
                     .then(data => {
@@ -37,10 +35,13 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                         fetch(`${endPoint}lat=${data[0].lat}&lon=${data[0].lon}&appid=${key}&lang=ru&units=metric`)
                         .then(response => response.json())
                         .then(data => {
-                            if(data.length){
+                            console.log(data)
+                            if(data.cod === '200'){
+                                setStatusMess('По выбранному городу...');
+                                refWea.current.style.fontWeight = 700;
                                 GeneralDatasWea(data)
                             }else{
-                                setStatusMess('Город не найден')
+                                setStatusMess('Город не найден...');
                             }
                             
                     })
