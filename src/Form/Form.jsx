@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import FormStyle from './Form.module.css';
-import { cities } from '../DataCity/DataCity';
 
 
 const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
