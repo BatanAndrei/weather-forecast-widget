@@ -19,7 +19,6 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
         setdataInput(e.target.value);
         }
        
-        useEffect(() => {
             const heandleWeahter = (e) => {
                 if(e.target === refWea.current) {
                     refWea.current.style.fontWeight = 700;
@@ -51,12 +50,6 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                 }
             }
             
-            window.addEventListener("click", heandleWeahter)
-    
-            return () => {
-            window.removeEventListener("click", heandleWeahter)
-            }
-        },[dataInput])
     
         const error = () => {
             alert('Введите город или населённый пункт. Воспользуйтесь кнопкой "Прогноз по городу"');
@@ -71,7 +64,6 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                 })
             }
     
-            useEffect(() => {
                 const heandlerGeo = (e) => {
                     if(e.target === refGeo.current) {
                         refGeo.current.style.fontWeight = 700;
@@ -89,21 +81,14 @@ const CustomForm = ({ GeneralDatasWea, GeneralDatasGeo }) => {
                 }
                 }
     
-                window.addEventListener("click", heandlerGeo)
-    
-                return () => {
-                window.removeEventListener("click", heandlerGeo)
-                }
-            },[])
-
     return (
         <>
             <h1 className={FormStyle.text}>Прогноз погоды</h1>
             <input type="text" className={FormStyle.modification} placeholder="Введите город на русском языке" onChange={handleChange} />
             <p className={FormStyle.message}>{statusMess}</p>
             <div className={FormStyle.buttonsReqPosition}>
-                <button className={FormStyle.buttonPoss}><section ref={refWea}>Прогноз по городу</section></button>
-                <button className={FormStyle.buttonPoss}><section ref={refGeo}>Прогноз по GEO</section></button>
+                <button className={FormStyle.buttonPoss}><section ref={refWea} onClick={heandleWeahter}>Прогноз по городу</section></button>
+                <button className={FormStyle.buttonPoss}><section ref={refGeo} onClick={heandlerGeo}>Прогноз по GEO</section></button>
             </div>
         </>
     )
